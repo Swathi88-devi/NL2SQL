@@ -216,7 +216,7 @@ def execute_sql_query(sql: str) -> tuple[bool, Optional[List[str]], Optional[Lis
         
         conn.close()
         
-        logger.info(f"✓ Query executed: {len(rows)} rows, {len(columns)} columns")
+        logger.info(f" Query executed: {len(rows)} rows, {len(columns)} columns")
         return True, columns, rows, ""
     
     except sqlite3.OperationalError as e:
@@ -306,7 +306,7 @@ async def root():
 async def chat(request: ChatRequest) -> ChatResponse:
     """Chat endpoint - Main interaction"""
     
-    logger.info(f"📨 Question: {request.question}")
+    logger.info(f" Question: {request.question}")
     
     # Validate input
     if not request.question or len(request.question) > 500:
@@ -342,7 +342,7 @@ async def chat(request: ChatRequest) -> ChatResponse:
         sql_query = extract_sql_from_markdown(message)
         
         if sql_query:
-            logger.info(f"✓ Extracted SQL: {sql_query[:80]}")
+            logger.info(f" Extracted SQL: {sql_query[:80]}")
         else:
             logger.info("No SQL found in message")
         
@@ -359,7 +359,7 @@ async def chat(request: ChatRequest) -> ChatResponse:
                 error_msg = exec_error
                 logger.error(f"SQL execution failed: {exec_error}")
             else:
-                logger.info(f"✓ SQL executed: {len(rows) if rows else 0} rows")
+                logger.info(f" SQL executed: {len(rows) if rows else 0} rows")
         
         # Generate chart if we have data
         chart_data = None
@@ -368,7 +368,7 @@ async def chat(request: ChatRequest) -> ChatResponse:
             chart_data = generate_chart(columns, rows)
             if chart_data:
                 chart_type = "bar" if len(columns) == 2 else "line"
-                logger.info(f"📊 Chart generated: {chart_type}")
+                logger.info(f" Chart generated: {chart_type}")
         
         return ChatResponse(
             message=message,
@@ -440,22 +440,22 @@ async def general_exception_handler(request: Request, exc: Exception):
 @app.on_event("startup")
 async def startup_event():
     logger.info("=" * 70)
-    logger.info("🚀 Starting Clinic NL2SQL API")
+    logger.info(" Starting Clinic NL2SQL API")
     logger.info("=" * 70)
     try:
         if check_database_connection():
-            logger.info("✓ Database connected")
+            logger.info(" Database connected")
         agent = get_agent()
         memory = get_memory_count(agent)
-        logger.info(f"✓ Agent ready with {memory} memory items")
-        logger.info("✅ API Ready!")
+        logger.info(f" Agent ready with {memory} memory items")
+        logger.info(" API Ready!")
         logger.info("=" * 70)
     except Exception as e:
         logger.error(f"Startup error: {e}")
 
 @app.on_event("shutdown")
 async def shutdown_event():
-    logger.info("🛑 Shutting down...")
+    logger.info(" Shutting down...")
 
 # ==================== MAIN ====================
 
