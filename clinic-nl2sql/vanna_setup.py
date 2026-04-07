@@ -160,16 +160,16 @@ def create_tool_registry(sql_runner, agent_memory):
     tool_registry = ToolRegistry()
     
     # Tool 1: RunSqlTool - Executes SQL queries
-    logger.info("  RunSqlTool - Executes SQL queries on database")
+    logger.info(" RunSqlTool - Executes SQL queries on database")
     run_sql_tool = RunSqlTool(sql_runner=sql_runner)
     
     # Tool 2: VisualizeDataTool - Creates visualizations
-    logger.info("   VisualizeDataTool - Creates visualizations of results")
+    logger.info(" VisualizeDataTool - Creates visualizations of results")
     visualize_data_tool = VisualizeDataTool()
     
     # Tool 3 & 4: Memory tools (imported but auto-managed by Agent)
-    logger.info("   SaveQuestionToolArgsTool - Saves Q&A pairs (auto-registered)")
-    logger.info("  SearchSavedCorrectToolUsesTool - Searches Q&A pairs (auto-registered)")
+    logger.info(" SaveQuestionToolArgsTool - Saves Q&A pairs (auto-registered)")
+    logger.info(" SearchSavedCorrectToolUsesTool - Searches Q&A pairs (auto-registered)")
     
     logger.info(" Tool Registry ready with 4 tools")
     
