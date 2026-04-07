@@ -1,1 +1,0 @@
-# clinic-nl2sql
