@@ -72,7 +72,7 @@ def create_tables(conn):
     """)
 
     conn.commit()
-    print("✅ All tables created successfully!")
+    print("All tables created successfully!")
 
 def main():
     conn = create_connection()
@@ -300,7 +300,7 @@ def main():
 
     conn.close()
 
-    print(f"✅ Created {p} patients, {d} doctors, {a} appointments, {t} treatments, {i} invoices")
+    print(f" Created {p} patients, {d} doctors, {a} appointments, {t} treatments, {i} invoices")
 
 if __name__ == "__main__":
     main()
