@@ -39,7 +39,7 @@ QA_PAIRS = [
 async def seed_agent_memory():
     """Seed agent memory with Q&A pairs"""
     logger.info("=" * 70)
-    logger.info("🌱 Seeding Agent Memory")
+    logger.info(" Seeding Agent Memory")
     logger.info("=" * 70 + "\n")
     
     try:
@@ -63,7 +63,7 @@ async def seed_agent_memory():
                     result = memory.add_memory(question, sql)
                     if asyncio.iscoroutine(result):
                         await result
-                    logger.info("   ✓ Added via add_memory\n")
+                    logger.info("  Added via add_memory\n")
                     stored_count += 1
                 
                 # Method 2: store_question_and_sql
@@ -71,23 +71,23 @@ async def seed_agent_memory():
                     result = memory.store_question_and_sql(question, sql, request_context)
                     if asyncio.iscoroutine(result):
                         await result
-                    logger.info("   ✓ Added via store_question_and_sql\n")
+                    logger.info("  Added via store_question_and_sql\n")
                     stored_count += 1
                 
                 # Method 3: Direct storage in internal list
                 elif hasattr(memory, 'memories'):
                     memory.memories.append({"question": question, "sql": sql})
-                    logger.info("   ✓ Added to memories list\n")
+                    logger.info("   Added to memories list\n")
                     stored_count += 1
                 
                 else:
-                    logger.warning("   ✗ No storage method found\n")
+                    logger.warning(" No storage method found\n")
             
             except Exception as e:
-                logger.warning(f"   ⚠️  Error: {str(e)[:60]}\n")
+                logger.warning(f" Error: {str(e)[:60]}\n")
         
         logger.info("=" * 70)
-        logger.info(f"✅ Seeding Complete - {stored_count} items added")
+        logger.info(f" Seeding Complete - {stored_count} items added")
         logger.info("=" * 70 + "\n")
         
         # Verify
@@ -104,7 +104,7 @@ async def seed_agent_memory():
             logger.info(f"Memory verification skipped: {e}")
     
     except Exception as e:
-        logger.error(f"❌ Seeding failed: {e}", exc_info=True)
+        logger.error(f" Seeding failed: {e}", exc_info=True)
 
 # ==================== MAIN ====================
 
